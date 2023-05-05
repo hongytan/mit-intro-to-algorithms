@@ -40,20 +40,24 @@ class Doubly_Linked_List_Seq:
         # Part (a): Implement me! #
         ###########################
         node = Doubly_Linked_List_Node(x)
-        if self.head:
+        if self.head: # Check if there is a head node
             node.next = self.head
             self.head.prev = node
         self.head = node
+        if not self.tail: # No tail node
+            self.tail = node
 
     def insert_last(self, x):
         ###########################
         # Part (a): Implement me! #
         ###########################
         node = Doubly_Linked_List_Node(x)
-        if self.tail:
+        if self.tail: # Check if there is a tail node
             node.prev = self.tail
             self.tail.next = node
         self.tail = node
+        if not self.head: # Empty linked list
+            self.head = node # Set head to node
 
     def delete_first(self):
         x = None
@@ -96,14 +100,9 @@ class Doubly_Linked_List_Seq:
         ###########################
         # Part (c): Implement me! # 
         ###########################
-        if x.next:
-            x.next.prev = L2.tail
-
+        x.next.prev = L2.tail
         L2.tail.next = x.next
-        
-        if L2.head:
-            L2.head.prev = x
-            
+        L2.head.prev = x
         x.next = L2.head
         L2.head = None
         L2.tail = None
